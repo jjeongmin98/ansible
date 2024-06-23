@@ -1,0 +1,27 @@
+---
+  - name: ansible_ping
+    hosts: all
+    become: yes
+    tasks:
+      - name: Install vim
+        yum:
+          name: vim
+          state: present
+        tags:
+          - install
+          - vim
+      - name: Install mysql
+        yum:
+          name: mysql
+          state: present
+        tags:
+          - install
+          - mysql
+      - name: Stop httpd
+        shell: systemctl stop httpd
+        tags: stop
+      - name: stop mysql
+        shell: systemctl stop mysql
+        tags: stop
+
+
